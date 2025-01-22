@@ -11,6 +11,11 @@
     color: white;
 }
 
+.me-2
+{
+    border-radius: 100%;
+}
+
 .isi
 {
     display: flex;
@@ -393,5 +398,20 @@ footer .social-icons {
     
     .cart-count-bubble {
         transform: scale(1.1);  
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-nav .nav-item {
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .navbar-nav .nav-item:last-child {
+        border-bottom: none;
+    }
+    .navbar-nav .nav-link {
+        display: block;
+        padding: 10px 15px;
     }
 }

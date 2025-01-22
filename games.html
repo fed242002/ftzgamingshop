@@ -280,25 +280,31 @@
                 <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
                 FTZ
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="d-flex align-items-center">
+                <a class="nav-link cart-icon-container d-lg-none me-3" href="cart.html">
+                    <i class='bx bx-cart text-white'></i>
+                    <span class="cart-count-bubble" id="cart-count">0</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-link"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
-                    <li class="nav-link"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
-                    <li class="nav-link"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
-                    <li class="nav-link"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
-                    <li class="nav-item">
+                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
+                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
+                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
+                    <li class="nav-item d-none d-lg-block my-2 my-lg-0">
                         <a class="nav-link cart-icon-container" href="cart.html">
                             <i class='bx bx-cart'></i>
-                            <span class="cart-count-bubble" id="cart-count">0</span>
+                            <span class="cart-count-bubble" id="cart-count-lg">0</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
+      </nav>
 
     <div class="container text-center mb-3">
         <div class="btn-group" role="group" aria-label="Difficulty Selection">
@@ -576,17 +582,6 @@
                 startGame();
             });
         }
-
-        // Cart count initialization
-        function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartCountElement = document.getElementById('cart-count');
-            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-            if (cartCountElement) {
-                cartCountElement.textContent = cartCount;
-                cartCountElement.style.display = cartCount > 0 ? 'block' : 'none';
-            }
-        }
                    scoreDisplay.textContent = score;
 
                     // Update performance stats
@@ -594,10 +589,29 @@
                     performanceStats.hitMoles++;
                     performanceStats.highestCombo = Math.max(performanceStats.highestCombo, consecutiveHits);
 
-                  
-
+    </script>
+    <script>
+        // Sync cart count between mobile and desktop cart icons
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            const mobileCartCount = document.getElementById('cart-count');
+            const desktopCartCount = document.getElementById('cart-count-lg');
+            
+            if (mobileCartCount) {
+                mobileCartCount.textContent = cartCount;
+                mobileCartCount.style.display = cartCount > 0 ? 'block' : 'none';
+            }
+            
+            if (desktopCartCount) {
+                desktopCartCount.textContent = cartCount;
+                desktopCartCount.style.display = cartCount > 0 ? 'block' : 'none';
+            }
+        }
+      
         // Call updateCartCount on page load
         document.addEventListener('DOMContentLoaded', updateCartCount);
-    </script>
+      </script>
 </body>
 </html>

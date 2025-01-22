@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>FTZ Gaming Shop</title>
     <link rel="icon" href="gambar/logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" crossorigin="anonymous">
@@ -12,48 +12,119 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Jersey+15&display=swap" rel="stylesheet">
+    <style>
+        /* Additional mobile-friendly styles */
+        body {
+            overflow-x: hidden;
+        }
+        .container-fluid {
+            padding: 0;
+        }
+        .navbar {
+            padding: 10px 0;
+        }
+        .navbar-brand img {
+            height: 35px;
+        }
+        .homeCover .carousel-item img {
+            min-height: 250px;
+            max-height: 70vh;
+            object-fit: cover;
+            width: 100%;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .product-item {
+            flex: 0 1 calc(50% - 15px);
+            max-width: 250px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .product-image {
+            max-width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .social-icons {
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .product-item {
+                flex: 0 1 100%;
+            }
+            .homeCover .carousel-item img {
+                min-height: 200px;
+                max-height: 50vh;
+            }
+            .product-image {
+                height: 200px;
+            }
+        }
+        @media (max-width: 480px) {
+            .homeCover .carousel-item img {
+                min-height: 150px;
+                max-height: 40vh;
+            }
+            .product-image {
+                height: 150px;
+            }
+        }
+
+        
+    </style>
 </head>
 <body>
 <div class="container-fluid" style="background-color: black;">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-          <a class="navbar-brand d-flex align-items-center" href="index.html">
-              <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
-              FTZ
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
+          FTZ
+      </a>
+      <div class="d-flex align-items-center">
+          <a class="nav-link cart-icon-container d-lg-none me-3" href="cart.html">
+              <i class='bx bx-cart text-white'></i>
+              <span class="cart-count-bubble" id="cart-count">0</span>
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <ul class="navbar-nav mx-auto">
-                  <li class="nav-link"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
-                  <li class="nav-link"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
-                  <li class="nav-link"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
-                  <li class="nav-link"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
-                  <li class="nav-item">
-                    <a class="nav-link cart-icon-container" href="cart.html">
-                        <i class='bx bx-cart'></i>
-                        <span class="cart-count-bubble" id="cart-count">0</span>
-                    </a>
-                </li>
-              </ul>
-          </div>
       </div>
-  </nav>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav mx-auto">
+              <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
+              <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
+              <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
+              <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
+              <li class="nav-item d-none d-lg-block my-2 my-lg-0">
+                  <a class="nav-link cart-icon-container" href="cart.html">
+                      <i class='bx bx-cart'></i>
+                      <span class="cart-count-bubble" id="cart-count-lg">0</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
   
     <!-- home cover -->
     <section class="homeCover">
     <div id="carouselExampleFade" class="carousel slide carousel-fade">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="gambar/home1.png" class="d-block w-100" alt="ini gambar1">
+          <img src="gambar/home1.png" class="d-block w-100" alt="Slide 1">
         </div>
         <div class="carousel-item">
-          <img src="gambar/home2.png" class="d-block w-100" alt="ini gambar2">
+          <img src="gambar/home2.png" class="d-block w-100" alt="Slide 2">
         </div>
         <div class="carousel-item">
-          <img src="gambar/home3.png" class="d-block w-100" alt="ini gambar3">
+          <img src="gambar/home3.png" class="d-block w-100" alt="Slide 3">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -67,13 +138,10 @@
     </div>
   </section>
 
-  <br>
-
-  <!-- Center the message between carousels -->
-  <section class="isi" style="display: flex; justify-content: center; margin-top: 5px;">
-    <div class="homeToShop" style="text-align: center;">
-      <h1 class="headerShop" style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 255, 255, 0.6); font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px;">Buy Your Favourite Item Now !</h1>
-      <a class="toshop" style="display: inline-block; margin-top: 10px;" href="shop.html">Click Me !!!</a>
+  <section class="isi text-center my-3">
+    <div class="homeToShop">
+      <h1 class="headerShop" style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 255, 255, 0.6); font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px;">Buy Your Favourite Item Now !</h1>
+      <a class="toshop btn btn-primary mt-2" href="shop.html">Click Me !!!</a>
     </div>
   </section>
 
@@ -81,16 +149,16 @@
     <div id="carouselExampleFade2" class="carousel slide carousel-fade">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="gambar/home5.png" class="d-block w-100" alt="ini gambar1">
+          <img src="gambar/home5.png" class="d-block w-100" alt="Slide 1">
         </div>
         <div class="carousel-item">
-          <img src="gambar/home6.png" class="d-block w-100" alt="ini gambar2">
+          <img src="gambar/home6.png" class="d-block w-100" alt="Slide 2">
         </div>
         <div class="carousel-item">
-          <img src="gambar/home7.png" class="d-block w-100" alt="ini gambar3">
+          <img src="gambar/home7.png" class="d-block w-100" alt="Slide 3">
         </div>
         <div class="carousel-item">
-          <img src="gambar/home8.png" class="d-block w-100" alt="ini gambar3">
+          <img src="gambar/home8.png" class="d-block w-100" alt="Slide 4">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade2" data-bs-slide="prev">
@@ -103,37 +171,36 @@
       </button>
     </div>
   </section>
-  <br>
 
-  <section class="isikonten" style="display: flex; justify-content: center; padding: 20px;">
-    <div class="isicontent">
-      <h1 id="homesop">What are we selling?</h1>
+  <section class="isikonten py-4">
+    <div class="container">
+      <h1 id="homesop" class="text-center mb-4">What are we selling?</h1>
       <div class="products">
         <!-- CS2 -->
         <div class="product-item">
           <img src="gambar/cs2.avif" alt="CS2" class="product-image">
-          <h2>CS2 Skins</h2>
+          <h2 class="h4 mt-3">CS2 Skins</h2>
           <p>High-quality skins for Counter-Strike 2 at the best prices.</p>
         </div>
   
         <!-- Dota 2 -->
         <div class="product-item">
           <img src="gambar/dota2.jpg" alt="Dota 2" class="product-image">
-          <h2>Dota 2 Items</h2>
+          <h2 class="h4 mt-3">Dota 2 Items</h2>
           <p>Exclusive Dota 2 items to upgrade your gameplay experience.</p>
         </div>
   
         <!-- Wuthering Waves -->
         <div class="product-item">
           <img src="gambar/wuwa.webp" alt="Wuthering Waves" class="product-image">
-          <h2>Wuthering Waves Items</h2>
+          <h2 class="h4 mt-3">Wuthering Waves Items</h2>
           <p>Exclusive items to enhance Wuthering Waves player experience.</p>
         </div>
   
         <!-- Honkai: Star Rail -->
         <div class="product-item">
           <img src="gambar/hsr.webp" alt="Honkai: Star Rail" class="product-image">
-          <h2>Honkai: Star Rail Items</h2>
+          <h2 class="h4 mt-3">Honkai: Star Rail Items</h2>
           <p>Exclusive items to enhance your Honkai: Star Rail journey.</p>
         </div>
       </div>
@@ -159,12 +226,12 @@
   </section>
   
  <!-- Footer Section -->
-<footer class="bg-dark text-white text-center py-2">
+<footer class="bg-dark text-white text-center py-3">
   <div class="container">
-      <p><strong>Contact Us:</strong> 
+      <p class="mb-2"><strong>Contact Us:</strong> 
           <a href="tel:+1234567890" class="text-white" style="text-decoration: none;">+1 234 567 890</a>
       </p>
-      <div class="social-icons">
+      <div class="social-icons mb-2">
           <a href="https://www.facebook.com/fedrian.tanwid.5" target="_blank" class="text-white me-2">
               <i class="bx bxl-facebook-circle" style="font-size: 1.5rem;"></i>
           </a>
@@ -175,7 +242,7 @@
               <i class="bx bxl-instagram" style="font-size: 1.5rem;"></i>
           </a>
       </div>
-      <p class="mt-2" style="font-size: 0.875rem;">&copy; 2025 FTZ Gaming Shop. All Rights Reserved.</p>
+      <p class="mb-0" style="font-size: 0.875rem;">&copy; 2025 FTZ Gaming Shop. All Rights Reserved.</p>
   </div>
 </footer>
 
@@ -184,16 +251,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
 
 <script>
-  // Initialize cart count from localStorage
+  // Sync cart count between mobile and desktop cart icons
   function updateCartCount() {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const cartCountElement = document.getElementById('cart-count');
       const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
       
-      // Update the cart count
-      if (cartCountElement) {
-          cartCountElement.textContent = cartCount;  // Set the cart count
-          cartCountElement.style.display = cartCount > 0 ? 'block' : 'none';  // Show or hide the bubble
+      const mobileCartCount = document.getElementById('cart-count');
+      const desktopCartCount = document.getElementById('cart-count-lg');
+      
+      if (mobileCartCount) {
+          mobileCartCount.textContent = cartCount;
+          mobileCartCount.style.display = cartCount > 0 ? 'block' : 'none';
+      }
+      
+      if (desktopCartCount) {
+          desktopCartCount.textContent = cartCount;
+          desktopCartCount.style.display = cartCount > 0 ? 'block' : 'none';
       }
   }
 
