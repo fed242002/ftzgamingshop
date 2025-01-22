@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whack-a-Mole Hammer Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="gambar/logo.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Jersey+15&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -34,15 +35,16 @@
             flex-direction: column;
             cursor: none;
             overflow-x: hidden;
+            padding-top: 80px
         }
 
-        /* Game Container Styles */
         .game-wrapper {
             flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            margin-top: 20px;
         }
 
         .game-container {
@@ -151,42 +153,6 @@
             margin-top: 10px;
         }
 
-        /* Responsive Adjustments */
-        @media screen and (max-width: 1200px) {
-            .grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-            }
-        }
-
-        @media screen and (max-width: 992px) {
-            .grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-
-            .stats {
-                font-size: 20px;
-            }
-
-            .hole {
-                height: 180px;
-            }
-
-            .ground {
-                height: 45px;
-            }
-
-            .mole {
-                width: 90px;
-                height: 90px;
-            }
-
-            .mole.up {
-                bottom: 70px;
-            }
-        }
-
         @media screen and (max-width: 768px) {
             .grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -214,113 +180,52 @@
                 bottom: 60px;
             }
         }
-
-        @media screen and (max-width: 576px) {
-            .grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
-            }
-
-            .stats {
-                font-size: 16px;
-            }
-
-            .hole {
-                height: 140px;
-            }
-
-            .ground {
-                height: 35px;
-            }
-
-            .mole {
-                width: 70px;
-                height: 70px;
-            }
-
-            .mole.up {
-                bottom: 50px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 4px;
-            }
-
-            .stats {
-                font-size: 14px;
-            }
-
-            .hole {
-                height: 120px;
-            }
-
-            .ground {
-                height: 30px;
-            }
-
-            .mole {
-                width: 60px;
-                height: 60px;
-            }
-
-            .mole.up {
-                bottom: 40px;
-            }
-        }
     </style>
 </head>
 <body>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
-                FTZ
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
+            FTZ
+        </a>
+        <div class="d-flex align-items-center">
+            <a class="nav-link cart-icon-container d-lg-none me-3" href="cart.html">
+                <i class='bx bx-cart text-white'></i>
+                <span class="cart-count-bubble" id="cart-count">0</span>
             </a>
-            <div class="d-flex align-items-center">
-                <a class="nav-link cart-icon-container d-lg-none me-3" href="cart.html">
-                    <i class='bx bx-cart text-white'></i>
-                    <span class="cart-count-bubble" id="cart-count">0</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
-                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
-                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
-                    <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
-                    <li class="nav-item d-none d-lg-block my-2 my-lg-0">
-                        <a class="nav-link cart-icon-container" href="cart.html">
-                            <i class='bx bx-cart'></i>
-                            <span class="cart-count-bubble" id="cart-count-lg">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-      </nav>
-
-    <div class="container text-center mb-3">
-        <div class="btn-group" role="group" aria-label="Difficulty Selection">
-            <input type="radio" class="btn-check" name="difficulty" id="difficultyEasy" autocomplete="off" value="0">
-            <label class="btn btn-outline-success" for="difficultyEasy">Easy</label>
-
-            <input type="radio" class="btn-check" name="difficulty" id="difficultyMedium" autocomplete="off" value="1" checked>
-            <label class="btn btn-outline-warning" for="difficultyMedium">Medium</label>
-
-            <input type="radio" class="btn-check" name="difficulty" id="difficultyHard" autocomplete="off" value="2">
-            <label class="btn btn-outline-danger" for="difficultyHard">Hard</label>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
+                <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
+                <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
+                <li class="nav-item my-2 my-lg-0"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
+                <li class="nav-item d-none d-lg-block my-2 my-lg-0">
+                    <a class="nav-link cart-icon-container" href="cart.html">
+                        <i class='bx bx-cart'></i>
+                        <span class="cart-count-bubble" id="cart-count-lg">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+    <!-- Start Screen -->
+    <div class="game-wrapper" id="startScreen">
+        <div class="game-container text-center">
+            <h1 class="mb-4">Whack-A-Mole</h1>
+            <button id="startButton" class="btn btn-primary btn-lg">Start Game</button>
         </div>
     </div>
 
     <!-- Game Wrapper -->
-    <div class="game-wrapper">
+    <div class="game-wrapper" id="gameWrapper" style="display: none;">
         <div class="game-container">
             <div class="stats">
                 <span>Score: <span id="score">0</span></span>
@@ -343,36 +248,33 @@
     <!-- Hammer Cursor -->
     <div class="hammer" id="hammer"></div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-2">
-        <div class="container">
-            <p><strong>Contact Us:</strong> 
-                <a href="tel:+1234567890" class="text-white" style="text-decoration: none;">+1 234 567 890</a>
-            </p>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/fedrian.tanwid.5" target="_blank" class="text-white me-2">
-                    <i class="bx bxl-facebook-circle" style="font-size: 1.5rem;"></i>
-                </a>
-                <a href="https://x.com/fedrian_24?s=33" target="_blank" class="text-white me-2">
-                    <i class="bx bxl-twitter" style="font-size: 1.5rem;"></i>
-                </a>
-                <a href="https://www.instagram.com/fedr.ian/" target="_blank" class="text-white">
-                    <i class="bx bxl-instagram" style="font-size: 1.5rem;"></i>
-                </a>
-            </div>
-            <p class="mt-2" style="font-size: 0.875rem;">&copy; 2025 FTZ Gaming Shop. All Rights Reserved.</p>
+    <!-- Footer Section -->
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+        <p class="mb-2"><strong>Contact Us:</strong> 
+            <a href="tel:+1234567890" class="text-white" style="text-decoration: none;">+1 234 567 890</a>
+        </p>
+        <div class="social-icons mb-2">
+            <a href="https://www.facebook.com/fedrian.tanwid.5" target="_blank" class="text-white me-2">
+                <i class="bx bxl-facebook-circle" style="font-size: 1.5rem;"></i>
+            </a>
+            <a href="https://x.com/fedrian_24?s=33" target="_blank" class="text-white me-2">
+                <i class="bx bxl-twitter" style="font-size: 1.5rem;"></i>
+            </a>
+            <a href="https://www.instagram.com/fedr.ian/" target="_blank" class="text-white">
+                <i class="bx bxl-instagram" style="font-size: 1.5rem;"></i>
+            </a>
         </div>
-    </footer>
+        <p class="mb-0" style="font-size: 0.875rem;">&copy; 2025 FTZ Gaming Shop. All Rights Reserved.</p>
+    </div>
+  </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const holes = document.querySelectorAll('.hole');
         const scoreDisplay = document.getElementById('score');
         const timeDisplay = document.getElementById('time');
         const hammerEl = document.getElementById('hammer');
-        const difficultyInputs = document.querySelectorAll('input[name="difficulty"]');
         
         // Game Configuration
         const GAME_DURATION = 30; // seconds
@@ -386,7 +288,6 @@
         let score = 0;
         let timeLeft = GAME_DURATION;
         let gameOver = false;
-        let difficultyLevel = 1; // Default to Medium
         let timerInterval, moleInterval;
         let consecutiveHits = 0;
         let missedMoles = 0;
@@ -400,22 +301,16 @@
             highestCombo: 0
         };
 
-        // Difficulty Selection
-        difficultyInputs.forEach(input => {
-            input.addEventListener('change', (e) => {
-                // Update difficulty level based on selected radio button
-                difficultyLevel = parseInt(e.target.value);
-                
-                // If game is not over, restart the game with new difficulty
-                if (!gameOver) {
-                    // Clear existing intervals
-                    clearInterval(timerInterval);
-                    clearInterval(moleInterval);
-                    
-                    // Restart the game
-                    startGame();
-                }
-            });
+        // Start screen setup
+        const startScreen = document.getElementById('startScreen');
+        const gameWrapper = document.getElementById('gameWrapper');
+        const startButton = document.getElementById('startButton');
+
+        // Start button event listener
+        startButton.addEventListener('click', () => {
+            startScreen.style.display = 'none';
+            gameWrapper.style.display = 'flex';
+            startGame();
         });
 
         // Hammer movement
@@ -466,12 +361,11 @@
             // Whack mole
             mole.addEventListener('click', () => {
                 if (!gameOver) {
-                    // Calculate points based on difficulty and combo
+                    // Calculate points
                     const basePoints = 10;
                     const comboMultiplier = Math.min(consecutiveHits + 1, 5);
-                    const difficultyBonus = DIFFICULTY_LEVELS[difficultyLevel].bonusPoints;
                     
-                    score += basePoints * comboMultiplier * difficultyBonus;
+                    score += basePoints * comboMultiplier;
                     scoreDisplay.textContent = score;
 
                     // Update performance stats
@@ -506,12 +400,12 @@
 
         // Spawn moles
         function startMoleSpawning() {
-            moleInterval = setInterval(randomHole, DIFFICULTY_LEVELS[difficultyLevel].speed);
+            moleInterval = setInterval(randomHole, 750);
         }
 
         // Start game
         function startGame() {
-            // Reset all game state
+            // Reset game state
             score = 0;
             timeLeft = GAME_DURATION;
             gameOver = false;
@@ -532,10 +426,6 @@
             startMoleSpawning();
         }
 
-        // Initial game start
-        startGame();
-
-        // End game
         function endGame() {
             gameOver = true;
             
@@ -561,7 +451,7 @@
             `;
             document.body.appendChild(gameOverScreen);
 
-            // Add restart event listener
+            // Restart mechanism
             document.getElementById('restartButton').addEventListener('click', () => {
                 // Remove game over screen
                 const gameOverScreen = document.querySelector('.game-over');
@@ -582,13 +472,6 @@
                 startGame();
             });
         }
-                   scoreDisplay.textContent = score;
-
-                    // Update performance stats
-                    consecutiveHits++;
-                    performanceStats.hitMoles++;
-                    performanceStats.highestCombo = Math.max(performanceStats.highestCombo, consecutiveHits);
-
     </script>
     <script>
         // Sync cart count between mobile and desktop cart icons
