@@ -225,6 +225,20 @@
     </div>
   </section>
 
+  <!-- Toast Container -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <div id="emailSubscriptionToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-success text-white">
+        <strong class="me-auto">Subscription Successful</strong>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body bg-light text-dark">
+        Thank you for subscribing! You'll receive our latest updates and offers.
+      </div>
+    </div>
+  </div>
+  
+  <!-- Email Registration Section -->
   <section class="regEmail" style="padding: 20px; background-color: #343a40; color: white;">
     <h2 style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 255, 255, 0.6); font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px;">
       Register Your Email
@@ -242,6 +256,39 @@
       </div>
     </form>
   </section>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const emailForm = document.getElementById('emailForm');
+      const emailInput = document.getElementById('email');
+      const emailToast = new bootstrap.Toast(document.getElementById('emailSubscriptionToast'));
+      
+      emailForm.addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the default form submission
+          
+          // Get the email value
+          const email = emailInput.value.trim();
+          
+          // Basic email validation
+          if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              // Show toast notification
+              emailToast.show();
+              
+              // Clear the input
+              emailInput.value = '';
+          } else {
+              // Optional: show error if email is invalid
+              alert('Please enter a valid email address.');
+          }
+      });
+  });
+  </script>
+  
+  <style>
+      .toast {
+          margin-top: 70px; /* Adjust to sit below the navbar */
+      }
+  </style>
 
  <!-- Footer Section -->
 <footer class="bg-dark text-white text-center py-2">
