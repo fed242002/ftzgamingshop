@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole Hammer Game</title>
+    <link rel="icon" href="gambar/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Jersey+15&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #27ae60;
+            --dark-color: #2c3e50;
+            --light-color: #34495e;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--primary-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        /* Game Container Styles */
+        .game-wrapper {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            text-align: center;
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            position: relative;
+        }
+
+        .hole {
+            background-color: var(--light-color);
+            height: 200px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: var(--dark-color);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .mole {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23795548"><circle cx="50" cy="50" r="40"/><ellipse cx="50" cy="75" rx="30" ry="20" fill="%23D7CCC8"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: bottom 0.2s;
+            cursor: pointer;
+        }
+
+        .mole.up {
+            bottom: 80px;
+        }
+
+        .hammer {
+            position: fixed;
+            pointer-events: none;
+            width: 100px;
+            height: 100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23795548"><path d="M20 60 L40 40 L60 60 L40 80 Z" fill="%238D6E63"/><rect x="35" y="35" width="30" height="10" transform="rotate(45 50 40)" fill="%23BCAAA4"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translate(-50%, -50%) rotate(30deg);
+            z-index: 1000;
+        }
+
+        .game-over {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 2000;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .stats-breakdown {
+            margin: 15px 0;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .restart-btn {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Responsive Adjustments */
+        @media screen and (max-width: 1200px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .stats {
+                font-size: 20px;
+            }
+
+            .hole {
+                height: 180px;
+            }
+
+            .ground {
+                height: 45px;
+            }
+
+            .mole {
+                width: 90px;
+                height: 90px;
+            }
+
+            .mole.up {
+                bottom: 70px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .stats {
+                font-size: 18px;
+            }
+
+            .hole {
+                height: 160px;
+            }
+
+            .ground {
+                height: 40px;
+            }
+
+            .mole {
+                width: 80px;
+                height: 80px;
+            }
+
+            .mole.up {
+                bottom: 60px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+
+            .stats {
+                font-size: 16px;
+            }
+
+            .hole {
+                height: 140px;
+            }
+
+            .ground {
+                height: 35px;
+            }
+
+            .mole {
+                width: 70px;
+                height: 70px;
+            }
+
+            .mole.up {
+                bottom: 50px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 4px;
+            }
+
+            .stats {
+                font-size: 14px;
+            }
+
+            .hole {
+                height: 120px;
+            }
+
+            .ground {
+                height: 30px;
+            }
+
+            .mole {
+                width: 60px;
+                height: 60px;
+            }
+
+            .mole.up {
+                bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
+                FTZ
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-icon-container" href="cart.html">
+                            <i class='bx bx-cart'></i>
+                            <span class="cart-count-bubble" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center mb-3">
+        <div class="btn-group" role="group" aria-label="Difficulty Selection">
+            <input type="radio" class="btn-check" name="difficulty" id="difficultyEasy" autocomplete="off" value="0">
+            <label class="btn btn-outline-success" for="difficultyEasy">Easy</label>
+
+            <input type="radio" class="btn-check" name="difficulty" id="difficultyMedium" autocomplete="off" value="1" checked>
+            <label class="btn btn-outline-warning" for="difficultyMedium">Medium</label>
+
+            <input type="radio" class="btn-check" name="difficulty" id="difficultyHard" autocomplete="off" value="2">
+            <label class="btn btn-outline-danger" for="difficultyHard">Hard</label>
+        </div>
+    </div>
+
+    <!-- Game Wrapper -->
+    <div class="game-wrapper">
+        <div class="game-container">
+            <div class="stats">
+                <span>Score: <span id="score">0</span></span>
+                <span>Time: <span id="time">30</span></span>
+            </div>
+            <div class="grid" id="grid">
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+                <div class="hole"><div class="ground"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hammer Cursor -->
+    <div class="hammer" id="hammer"></div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-2">
+        <div class="container">
+            <p><strong>Contact Us:</strong> 
+                <a href="tel:+1234567890" class="text-white" style="text-decoration: none;">+1 234 567 890</a>
+            </p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/fedrian.tanwid.5" target="_blank" class="text-white me-2">
+                    <i class="bx bxl-facebook-circle" style="font-size: 1.5rem;"></i>
+                </a>
+                <a href="https://x.com/fedrian_24?s=33" target="_blank" class="text-white me-2">
+                    <i class="bx bxl-twitter" style="font-size: 1.5rem;"></i>
+                </a>
+                <a href="https://www.instagram.com/fedr.ian/" target="_blank" class="text-white">
+                    <i class="bx bxl-instagram" style="font-size: 1.5rem;"></i>
+                </a>
+            </div>
+            <p class="mt-2" style="font-size: 0.875rem;">&copy; 2025 FTZ Gaming Shop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        const holes = document.querySelectorAll('.hole');
+        const scoreDisplay = document.getElementById('score');
+        const timeDisplay = document.getElementById('time');
+        const hammerEl = document.getElementById('hammer');
+        const difficultyInputs = document.querySelectorAll('input[name="difficulty"]');
+        
+        // Game Configuration
+        const GAME_DURATION = 30; // seconds
+        const DIFFICULTY_LEVELS = [
+            { speed: 1000, bonusPoints: 1, name: 'Easy' },    // Easy
+            { speed: 750, bonusPoints: 2, name: 'Medium' },   // Medium
+            { speed: 500, bonusPoints: 3, name: 'Hard' }      // Hard
+        ];
+        
+        // Game State
+        let score = 0;
+        let timeLeft = GAME_DURATION;
+        let gameOver = false;
+        let difficultyLevel = 1; // Default to Medium
+        let timerInterval, moleInterval;
+        let consecutiveHits = 0;
+        let missedMoles = 0;
+
+        // Performance Tracking
+        const performanceStats = {
+            totalMoles: 0,
+            hitMoles: 0,
+            missedMoles: 0,
+            accuracyRate: 0,
+            highestCombo: 0
+        };
+
+        // Difficulty Selection
+        difficultyInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                // Update difficulty level based on selected radio button
+                difficultyLevel = parseInt(e.target.value);
+                
+                // If game is not over, restart the game with new difficulty
+                if (!gameOver) {
+                    // Clear existing intervals
+                    clearInterval(timerInterval);
+                    clearInterval(moleInterval);
+                    
+                    // Restart the game
+                    startGame();
+                }
+            });
+        });
+
+        // Hammer movement
+        document.addEventListener('mousemove', (e) => {
+            hammerEl.style.left = e.clientX + 'px';
+            hammerEl.style.top = e.clientY + 'px';
+        });
+
+        // Randomize mole appearance
+        function randomHole() {
+            if (gameOver) return;
+
+            const randomIndex = Math.floor(Math.random() * holes.length);
+            const hole = holes[randomIndex];
+
+            // Remove any existing moles
+            hole.querySelectorAll('.mole').forEach(m => m.remove());
+
+            // Create new mole
+            const mole = document.createElement('div');
+            mole.classList.add('mole');
+            hole.appendChild(mole);
+
+            // Track total moles
+            performanceStats.totalMoles++;
+
+            // Animate mole
+            setTimeout(() => {
+                mole.classList.add('up');
+            }, 10);
+
+            // Hide mole after some time
+            const hideTimeout = setTimeout(() => {
+                if (mole.parentElement) {
+                    mole.classList.remove('up');
+                    setTimeout(() => {
+                        if (mole.parentElement && mole.parentElement.contains(mole)) {
+                            mole.parentElement.removeChild(mole);
+                            
+                            // Track missed moles
+                            missedMoles++;
+                            consecutiveHits = 0;
+                        }
+                    }, 200);
+                }
+            }, 1000);
+
+            // Whack mole
+            mole.addEventListener('click', () => {
+                if (!gameOver) {
+                    // Calculate points based on difficulty and combo
+                    const basePoints = 10;
+                    const comboMultiplier = Math.min(consecutiveHits + 1, 5);
+                    const difficultyBonus = DIFFICULTY_LEVELS[difficultyLevel].bonusPoints;
+                    
+                    score += basePoints * comboMultiplier * difficultyBonus;
+                    scoreDisplay.textContent = score;
+
+                    // Update performance stats
+                    consecutiveHits++;
+                    performanceStats.hitMoles++;
+                    performanceStats.highestCombo = Math.max(performanceStats.highestCombo, consecutiveHits);
+
+                    clearTimeout(hideTimeout);
+                    mole.classList.remove('up');
+                    setTimeout(() => {
+                        if (mole.parentElement) {
+                            mole.parentElement.removeChild(mole);
+                        }
+                    }, 200);
+                }
+            });
+        }
+
+        // Game timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timeDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    clearInterval(moleInterval);
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        // Spawn moles
+        function startMoleSpawning() {
+            moleInterval = setInterval(randomHole, DIFFICULTY_LEVELS[difficultyLevel].speed);
+        }
+
+        // Start game
+        function startGame() {
+            // Reset all game state
+            score = 0;
+            timeLeft = GAME_DURATION;
+            gameOver = false;
+            consecutiveHits = 0;
+            missedMoles = 0;
+            
+            // Reset performance stats
+            performanceStats.totalMoles = 0;
+            performanceStats.hitMoles = 0;
+            performanceStats.missedMoles = 0;
+            performanceStats.highestCombo = 0;
+
+            // Update displays
+            scoreDisplay.textContent = score;
+            timeDisplay.textContent = timeLeft;
+
+            startTimer();
+            startMoleSpawning();
+        }
+
+        // Initial game start
+        startGame();
+
+        // End game
+        function endGame() {
+            gameOver = true;
+            
+            // Calculate accuracy
+            performanceStats.accuracyRate = performanceStats.totalMoles > 0 
+                ? (performanceStats.hitMoles / performanceStats.totalMoles * 100).toFixed(2) 
+                : 0;
+
+            // Create game over screen
+            const gameOverScreen = document.createElement('div');
+            gameOverScreen.classList.add('game-over');
+            gameOverScreen.innerHTML = `
+                <h2>Game Over!</h2>
+                <p>Your Score: ${score}</p>
+                <div class="stats-breakdown">
+                    <p>Total Moles: ${performanceStats.totalMoles}</p>
+                    <p>Hit Moles: ${performanceStats.hitMoles}</p>
+                    <p>Missed Moles: ${missedMoles}</p>
+                    <p>Accuracy: ${performanceStats.accuracyRate}%</p>
+                    <p>Highest Combo: ${performanceStats.highestCombo}</p>
+                </div>
+                <button class="restart-btn" id="restartButton">Restart</button>
+            `;
+            document.body.appendChild(gameOverScreen);
+
+            // Add restart event listener
+            document.getElementById('restartButton').addEventListener('click', () => {
+                // Remove game over screen
+                const gameOverScreen = document.querySelector('.game-over');
+                if (gameOverScreen) {
+                    gameOverScreen.remove();
+                }
+
+                // Clear existing intervals
+                clearInterval(timerInterval);
+                clearInterval(moleInterval);
+
+                // Clear existing moles
+                holes.forEach(hole => {
+                    hole.querySelectorAll('.mole').forEach(m => m.remove());
+                });
+
+                // Restart game
+                startGame();
+            });
+        }
+
+        // Cart count initialization
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            if (cartCountElement) {
+                cartCountElement.textContent = cartCount;
+                cartCountElement.style.display = cartCount > 0 ? 'block' : 'none';
+            }
+        }
+                   scoreDisplay.textContent = score;
+
+                    // Update performance stats
+                    consecutiveHits++;
+                    performanceStats.hitMoles++;
+                    performanceStats.highestCombo = Math.max(performanceStats.highestCombo, consecutiveHits);
+
+                  
+
+        // Call updateCartCount on page load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>

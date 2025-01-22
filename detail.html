@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="icon" href="gambar/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        .star {
+            color: white;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            margin: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .image-thumbnails {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        .product-main-image-container {
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cart-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid" style="min-height: 100vh; display: flex; flex-direction: column;">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
+                FTZ
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="games.html">Mini Games</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-icon-container" href="cart.html">
+                            <i class='bx bx-cart'></i>
+                            <span class="cart-count-bubble" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-detail" style="flex-grow: 1; display: flex; justify-content: center; align-items: center; padding-top: 80px;">
+        <div class="container">
+            <div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+                <div class="col-md-6 image-container">
+                    <div id="thumbnail-images" class="image-thumbnails" style="display: none;"></div>
+                    <div class="product-main-image-container">
+                        <img id="product-image" src="" class="product-main-image" alt="Product Image">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 id="product-name"></h2>
+                    <p><strong>Price:</strong> <span id="product-price"></span></p>
+                    <p><strong>Description:</strong> <span id="product-description"></span></p>
+                    <p><strong>Category:</strong> <span id="product-category" style="color: #007bff; cursor: pointer;">Click to View Other Products</span></p>
+                    <p><strong>Rating:</strong> <span id="product-rating"></span></p>
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <a href="shop.html" class="btn btn-primary"><i class='bx bx-arrow-back me-1'></i>Back to Shop</a>
+                        <button class="btn btn-primary" onclick="addToCartDetail()">Add to Cart <i class='bx bx-cart'></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+<footer class="bg-dark text-white text-center py-2">
+  <div class="container">
+      <p><strong>Contact Us:</strong> 
+          <a href="tel:+1234567890" class="text-white" style="text-decoration: none;">+1 234 567 890</a>
+      </p>
+      <div class="social-icons">
+          <a href="https://www.facebook.com/fedrian.tanwid.5" target="_blank" class="text-white me-2">
+              <i class="bx bxl-facebook-circle" style="font-size: 1.5rem;"></i>
+          </a>
+          <a href="https://x.com/fedrian_24?s=33" target="_blank" class="text-white me-2">
+              <i class="bx bxl-twitter" style="font-size: 1.5rem;"></i>
+          </a>
+          <a href="https://www.instagram.com/fedr.ian/" target="_blank" class="text-white">
+              <i class="bx bxl-instagram" style="font-size: 1.5rem;"></i>
+          </a>
+      </div>
+      <p class="mt-2" style="font-size: 0.875rem;">&copy; 2025 FTZ Gaming Shop. All Rights Reserved.</p>
+  </div>
+</footer>
+</div>
+
+<script>
+const categoryMapping = {
+    'dota2': 'Dota 2',
+    'cs2': 'CS2',
+    'wutheringwaves': 'Wuthering Waves',
+    'honkai': 'Honkai Star Rail',
+    'all': 'All'
+};
+
+function getRatingStars(rating) {
+    const fullStar = '<i class="fas fa-star star"></i>';
+    const emptyStar = '<i class="far fa-star star"></i>';
+    let starsHTML = '';
+    for (let i = 0; i < Math.floor(rating); i++) starsHTML += fullStar;
+    for (let i = Math.floor(rating); i < 5; i++) starsHTML += emptyStar;
+    return starsHTML;
+}
+
+function loadProductDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('product');
+
+    if (productName) {
+        fetch('https://fed242002.github.io/fedd2/prod.json')
+            .then(response => response.json())
+            .then(data => {
+                const product = data.find(item => item.name === productName);
+                if (product) {
+                    document.getElementById('product-image').src = product.image;
+                    document.getElementById('product-name').textContent = product.name;
+                    document.getElementById('product-price').textContent = "Rp " + product.price.toLocaleString('id-ID');  // Price is an integer
+                    document.getElementById('product-description').textContent = product.description;
+                    document.getElementById('product-category').textContent = categoryMapping[product.categories] || product.categories;
+                    document.getElementById('product-rating').innerHTML = getRatingStars(product.rating);
+
+                    if (product.image2) {
+                        const thumbnailsContainer = document.getElementById('thumbnail-images');
+                        const thumbnail1 = document.createElement('img');
+                        thumbnail1.src = product.image;
+                        thumbnail1.classList.add('thumbnail');
+                        thumbnail1.onclick = () => changeMainImage(product.image);
+                        thumbnailsContainer.appendChild(thumbnail1);
+
+                        const thumbnail2 = document.createElement('img');
+                        thumbnail2.src = product.image2;
+                        thumbnail2.classList.add('thumbnail');
+                        thumbnail2.onclick = () => changeMainImage(product.image2);
+                        thumbnailsContainer.appendChild(thumbnail2);
+
+                        thumbnailsContainer.style.display = 'flex';
+                    }
+                } else {
+                    alert("Product not found.");
+                }
+            })
+            .catch(error => console.error('Error loading product data:', error));
+    } else {
+        alert("No product specified.");
+    }
+}
+
+function changeMainImage(image) {
+    document.getElementById('product-image').src = image;
+}
+
+function addToCartDetail() {
+    const productName = document.getElementById('product-name').textContent;
+    const productPriceString = document.getElementById('product-price').textContent;
+    
+    // Get the product price as an integer directly
+    const productPrice = parseInt(productPriceString.replace('Rp ', '').replace(/,/g, ''), 10);
+
+    const productImage = document.getElementById('product-image').src;
+
+    // Get cart data from localStorage or initialize as empty
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Check if the product already exists in the cart
+    let productInCart = cart.find(item => item.name === productName);
+
+    if (productInCart) {
+        productInCart.quantity += 1;  
+    } else {
+        
+        cart.push({
+            name: productName,
+            price: productPrice,  
+            image: productImage,
+            quantity: 1
+        });
+    }
+
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    
+    updateCartCount();
+
+    console.log(`${productName} added to cart!`);
+}
+
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.textContent = cartCount;
+        cartCountElement.style.display = cartCount > 0 ? 'block' : 'none';
+    }
+}
+
+window.onload = () => {
+    loadProductDetails();
+    updateCartCount();  
+};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

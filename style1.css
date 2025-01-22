@@ -1,0 +1,208 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+.container-fluid 
+{
+    padding: 0;
+    color: white;
+}
+
+.me-2
+{
+    border-radius: 100%;
+}
+
+.isi
+{
+    display: flex;
+    justify-content: center;
+}
+
+.headerShop
+{
+    font-family: "Bebas Neue";
+}
+
+
+.toshop {
+    display: inline-block; 
+    padding: 5px 100px;   
+    font-size: 16px;       
+    color: white;          
+    background-color: #007bff; 
+    border: none;         
+    border-radius: 50px;    
+    text-align: center;    
+    text-decoration: none; 
+    cursor: pointer;      
+    font-family:"Jersey 15" ;
+  }
+
+  .toshop:hover {
+    background-color: #0056b3;
+  }
+
+  .toshop:active {
+    background-color: #004085; 
+  }
+
+.isicontent
+{
+    font-family: "Bebas Neue";
+}
+  .products {
+    display: flex;
+    justify-content: space-between; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+  }
+
+  .product-item {
+    text-align: center;
+    flex: 1; 
+    max-width: 250px; 
+    margin: 0 10px; 
+  }
+
+  .product-image {
+    width: 100%; 
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+
+  .product-item h2 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+  }
+
+  .product-item p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  #homesop
+  {
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #000; 
+    gap: 0px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px; 
+    max-width: 600px;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: none; 
+}
+
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.isi {
+  display: flex;
+  flex-wrap: wrap;          
+  gap: 20px;                
+  justify-content: center;  
+  padding: 20px;     
+
+  .card {
+    width: 18rem; 
+    height: 500px; 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; 
+}
+
+.card-body {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.card-img-top {
+    object-fit: cover; 
+    height: 250px; 
+}
+
+.btn-primary {
+    margin-top: auto; 
+}
+
+.card-link {
+  text-decoration: none;  
+  color: inherit;  
+}
+
+body {
+  transition: filter 0.3s ease;
+}
+
+
+.card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+
+.card:hover {
+  transform: scale(1.15);
+  filter: none; 
+}
+
+footer {
+  height: 120px;
+  padding-top: 15px;
+  background-color: #333;
+}
+
+footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+footer p, footer .social-icons a {
+  margin: 0;
+}
+
+footer .social-icons {
+  margin-top: 10px;
+}
+
+

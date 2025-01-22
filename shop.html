@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="icon" href="gambar/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style1.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Jersey+15&display=swap" rel="stylesheet">
+    <style>
+        .cart-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-count-bubble {
+        position: absolute;
+        top: -4px;  /* Adjusted to move the bubble higher */
+        right: -8px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;  /* Ensures the bubble is circular */
+        width: 18px;  /* Make the width the same as height for a perfect circle */
+        height: 18px;  /* Height set to the same value as width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        text-align: center;
+        transition: transform 0.2s ease;
+        }
+
+            /* Home Cover Container */
+            .homeCover {
+                position: relative;
+                width: 100%;
+                height: auto;
+                margin-top: 56px; /* Height of navbar */
+                background-color: #000;
+            }
+
+            /* Image Container */
+            .single-image-container {
+                width: 100%;
+                height: auto;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .single-image-container img {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+            }
+
+            /* Search Bar Container */
+            .search-bar-container {
+                width: 100%;
+                padding: 15px;
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            .search-form {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .search-input {
+                width: calc(100% - 60px); /* Account for button width */
+                max-width: 500px;
+            }
+
+            /* Media queries for different screen sizes */
+            @media (max-width: 576px) {
+                .homeCover {
+                    margin-top: 56px;
+                }
+
+                .single-image-container {
+                    height: 200px; /* Smaller height for mobile */
+                }
+
+                .single-image-container img {
+                    height: 100%;
+                }
+
+                .search-bar-container {
+                    padding: 10px;
+                }
+
+                .search-form {
+                    flex-direction: row;
+                    align-items: center;
+                }
+
+                .search-input {
+                    font-size: 14px;
+                    padding: 8px;
+                }
+
+                .search-button {
+                    padding: 8px 15px;
+                    font-size: 14px;
+                }
+            }
+
+            @media (min-width: 577px) and (max-width: 768px) {
+                .single-image-container {
+                    height: 300px; /* Medium height for tablets */
+                }
+            }
+
+            @media (min-width: 769px) {
+                .single-image-container {
+                    height: 400px; /* Larger height for desktop */
+                }
+
+                .search-bar-container {
+                    padding: 20px;
+                }
+            }
+                    /* Home Cover Container */
+                .homeCover {
+                    position: relative;
+                    width: 100%;
+                    height: auto;
+                    margin-top: 56px; /* Height of navbar */
+                    background-color: #000;
+                }
+
+                /* Image Container */
+                .single-image-container {
+                    width: 100%;
+                    height: calc(100vh - 56px); /* Full viewport height minus navbar */
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .single-image-container img {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    object-fit: cover;
+                }
+
+                /* Search Bar Container */
+                .search-bar-container {
+                    width: 100%;
+                    padding: 15px;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .search-form {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    gap: 10px;
+                }
+
+                .search-input {
+                    flex: 1;
+                    max-width: 500px;
+                    border-radius: 5px;
+                }
+
+                .search-button {
+                    min-width: 50px;
+                    border-radius: 5px;
+                }
+
+                /* Media queries for different screen sizes */
+                @media (max-width: 576px) {
+                    .single-image-container {
+                        height: 300px; /* Fixed height for mobile */
+                    }
+
+                    .search-bar-container {
+                        padding: 10px;
+                    }
+
+                    .search-form {
+                        padding: 0 10px;
+                    }
+
+                    .search-input {
+                        font-size: 14px;
+                        padding: 8px;
+                    }
+
+                    .search-button {
+                        padding: 8px 15px;
+                        font-size: 14px;
+                    }
+                }
+
+                @media (min-width: 577px) and (max-width: 768px) {
+                    .single-image-container {
+                        height: 400px; /* Medium height for tablets */
+                    }
+                }
+
+                @media (min-width: 769px) {
+                    .single-image-container {
+                        height: calc(100vh - 56px); /* Full viewport height minus navbar for larger screens */
+                    }
+
+                    .search-bar-container {
+                        padding: 20px;
+                    }
+
+                    .search-form {
+                        max-width: 600px;
+                    }
+                }
+            /* Large screens (default) */
+            @media (min-width: 1024px) {
+                .cart-count-bubble {
+                    top: -10px;
+                    right: -8px;
+                    width: 20px;
+                    height: 20px;
+                    font-size: 12px;
+                }
+                
+                .cart-icon-container i {
+                    font-size: 24px;
+                }
+            }
+
+            /* Medium screens */
+            @media (max-width: 1023px) and (min-width: 768px) {
+                .cart-count-bubble {
+                    top: -8px;
+                    right: -6px;
+                    width: 18px;
+                    height: 18px;
+                    font-size: 11px;
+                }
+                
+                .cart-icon-container i {
+                    font-size: 22px;
+                }
+            }
+
+            /* Small screens */
+            @media (max-width: 767px) {
+                .cart-count-bubble {
+                    top: -6px;
+                    right: -4px;
+                    width: 16px;
+                    height: 16px;
+                    font-size: 10px;
+                }
+                
+                .cart-icon-container i {
+                    font-size: 20px;
+                }
+            }
+
+            /* Touch devices */
+            @media (hover: none) {
+                .cart-icon-container {
+                    padding: 8px;  /* Larger touch target */
+                }
+                
+                .cart-count-bubble {
+                    transform: scale(1.1);  /* Slightly larger for better visibility */
+                }
+            }
+    </style>
+</head>
+<body>
+<div class="container-fluid" style="background-color: black;">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="gambar/logo.png" alt="Gamer Gaming Shop Logo" class="me-2" style="height: 45px;">
+                FTZ
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="shop.html">Shop</a></li>
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="contact.html">About Us</a></li>
+                    <li class="nav-link"><a class="nav-link" aria-current="page" href="games.html">Mini Games</a></li>
+                    <li class="nav-link">
+                        <a class="nav-link cart-icon-container" aria-current="page" href="cart.html">
+                            <i class='bx bx-cart'></i>
+                            <span class="cart-count-bubble" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  
+    <!-- Home Cover Section -->
+    <section class="homeCover">
+        <div class="single-image-container">
+            <img src="gambar/home4.png" class="d-block w-100" alt="Home Cover Image">
+        </div>
+        <div class="search-bar-container">
+            <form class="search-form" role="search" onsubmit="handleSearch(event)">
+                <input type="text" class="form-control search-input" id="search-input" placeholder="Search for items..." aria-label="Search" oninput="handleSearch()">
+                <button type="submit" class="btn btn-primary search-button"><i class='bx bx-search-alt' ></i></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Category Filter Section -->
+    <div class="filter-buttons text-center my-3">
+        <button class="btn btn-secondary" onclick="filterByCategory('all')">All</button>
+        <button class="btn btn-secondary" onclick="filterByCategory('dota2')">Dota 2</button>
+        <button class="btn btn-secondary" onclick="filterByCategory('cs2')">CS2</button>
+        <button class="btn btn-secondary" onclick="filterByCategory('wutheringwaves')">Wuthering Waves</button>
+        <button class="btn btn-secondary" onclick="filterByCategory('honkai')">Honkai Star Rail</button>
+    </div>
+
+    <!-- Product Display Section -->
+    <section class="isi"></section>
+
+    <!-- JavaScript Code -->
+    <script>
+        const categoryMapping = {
+            'dota2': 'Dota 2',
+            'cs2': 'CS2',
+            'wutheringwaves': 'Wuthering Waves',
+            'honkai': 'Honkai Star Rail',
+            'all': 'All'
+        };
+
+        let productsData = [];  // Declare a global variable to hold the product data
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];  // Get cart from localStorage or initialize empty array
+
+        function renderCards(products) {
+            const cardContainer = document.querySelector('.isi');
+            let cardsHTML = '';
+
+            products.forEach(product => {
+                const categoryDisplayName = categoryMapping[product.categories.toLowerCase()] || product.categories;
+                const ratingStars = getRatingStars(product.rating);
+
+                const cardHTML = 
+                    `<a href="detail.html?product=${encodeURIComponent(product.name)}" class="card-link"> 
+                        <div class="card" style="width: 18rem;">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p><strong>Price:</strong> Rp ${product.price.toLocaleString('id-ID')}</p>
+                                <p><strong>Category:</strong> ${categoryDisplayName}</p>
+                                <p><strong>Rating:</strong> ${ratingStars}</p>
+                                <button class="btn btn-primary" onclick="addToCart(event, '${product.name}', ${product.id}, ${product.price}, '${product.image}')">
+                                    Add to Cart <i class='bx bx-cart'></i>
+                                </button>
+                            </div>
+                        </div>
+                    </a>`;
+                cardsHTML += cardHTML;
+            });
+
+            cardContainer.innerHTML = cardsHTML;
+        }
+
+        function getRatingStars(rating) {
+            const fullStar = '<i class="fas fa-star"></i>';
+            const emptyStar = '<i class="far fa-star"></i>';
+            let starsHTML = '';
+            
+            for (let i = 0; i < Math.floor(rating); i++) {
+                starsHTML += fullStar;
+            }
+
+            for (let i = Math.floor(rating); i < 5; i++) {
+                starsHTML += emptyStar;
+            }
+
+            return starsHTML;
+        }
+
+        function addToCart(event, productName, productId, productPrice, productImage) {
+            event.preventDefault(); // Prevent the card link from redirecting
+            event.stopPropagation(); // Prevent event bubbling
+            
+            const productInCart = cart.find(item => item.name === productName);
+            if (productInCart) {
+                productInCart.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    quantity: 1,
+                    price: productPrice,
+                    image: productImage
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count with animation
+            const cartCount = document.getElementById('cart-count');
+            cartCount.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartCount.style.transform = 'scale(1)';
+            }, 200);
+            
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = cartCount;
+            cartCountElement.style.display = cartCount > 0 ? 'block' : 'none';
+        }
+
+        function filterByCategory(category) {
+            let filteredProducts = category === 'all' ? productsData : productsData.filter(product => product.categories.toLowerCase() === category.toLowerCase());
+            renderCards(filteredProducts);
+        }
+
+        function handleSearch(event) {
+            if (event) event.preventDefault();
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filteredProducts = productsData.filter(product => 
+                product.name.toLowerCase().includes(query) || 
+                product.categories.toLowerCase().includes(query)
+            );
+            renderCards(filteredProducts);
+        }
+
+        // Initialize cart and load products
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            fetch('https://fed242002.github.io/fedd2/prod.json')
+                .then(response => response.json())
+                .then(data => {
+                    productsData = data;
+                    renderCards(data);
+                })
+                .catch(error => console.error('Error loading the JSON data:', error));
+        });
+    </script>
+    <section class="regEmail" style="padding: 20px; background-color: #343a40; color: white;">
+        <h2 style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 255, 255, 0.6); font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px;">
+          Register Your Email
+        </h2>
+        <p style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); font-family: 'Dancing Script', cursive; font-size: 18px; line-height: 1.6;">
+          Stay updated with our latest items and offers.
+        </p>
+        <form id="emailForm" action="process_registration.php" method="post" style="max-width: 500px; display: flex; align-items: center; justify-content: start; margin-top: 20px;">
+          <div class="mb-3" style="display: flex; align-items: center; gap: 10px;">
+            <label for="email" class="form-label" style="margin-bottom: 0; font-size: 16px; font-family: 'Jersey 15', serif; letter-spacing: 1px;">
+              Email address
+            </label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required style="flex-grow: 1; font-size: 16px; padding: 10px; border-radius: 5px;">
+            <button type="submit" class="btn btn-primary" style="height: 40px; font-family: 'Jersey 15', serif; font-size: 16px; border-radius: 5px;">Register</button>
+          </div>
+        </form>
+      </section>
+
+
+    <!-- Footer Section -->
+<footer class="bg-dark text-white text-center py-2">
+    <div class="container">
+        <p><strong>Contact Us:</strong> 
+            <a href="tel:+1234567890" class="text-white" style="text-decoration: none;">+1 234 567 890</a>
+        </p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/fedrian.tanwid.5" target="_blank" class="text-white me-2">
+                <i class="bx bxl-facebook-circle" style="font-size: 1.5rem;"></i>
+            </a>
+            <a href="https://x.com/fedrian_24?s=33" target="_blank" class="text-white me-2">
+                <i class="bx bxl-twitter" style="font-size: 1.5rem;"></i>
+            </a>
+            <a href="https://www.instagram.com/fedr.ian/" target="_blank" class="text-white">
+                <i class="bx bxl-instagram" style="font-size: 1.5rem;"></i>
+            </a>
+        </div>
+        <p class="mt-2" style="font-size: 0.875rem;">&copy; 2025 FTZ Gaming Shop. All Rights Reserved.</p>
+    </div>
+  </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+</body>
+</html>
